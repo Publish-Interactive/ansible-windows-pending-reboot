@@ -11,7 +11,6 @@
   when:
     - pending_reboot.changed
     - not windows_reboot_allowed
-    - windows_pending_reboot_fail
 
 - name: notify about playbook stop
   debug:
