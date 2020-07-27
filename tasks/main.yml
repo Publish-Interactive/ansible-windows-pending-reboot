@@ -1,8 +1,8 @@
 ---
-- name: check for pending reboot
+- name: Check OS and Ansible vars for pending reboot
   win_shell: "{{ lookup('file', 'check_pending_reboot.ps1') }}"
   register: pending_reboot
-  changed_when: pending_reboot.stdout_lines[0] != 'False'
+  changed_when: (pending_reboot.stdout_lines[0] != 'False') or (reboot_needed == true)
   notify: reboot windows
 
 - name: fail when reboot is not allowed
